@@ -1,0 +1,2 @@
+//QUERY 2
+match (n:Article)-[:WRITTEN_BY]-(m:Author) where m.name='Yan Zhang' with collect(n.title)as titles unwind titles as title match (n:Author)-[r:COAUTHOR]-(m:Author) where n.name='Yan Zhang' and r.title = title return title, n.name as author, n.degree_wb_authors/100 as own_r, m.name as other_auth, m.degree_wb_authors/100 as other_auth_relevance limit 25

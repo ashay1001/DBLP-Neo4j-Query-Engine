@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_title }}</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
+<!--NAVIGATION BAR-->
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">{{ site_title }}</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+	$(function() {
+		function search() {
+            const query=$("#search").find("input[name=search]").val();
+            const limit=$("#search").find("input[name=limit]").val();
+            $.get("/search?q=" + encodeURIComponent(query)+"&lmt="+ encodeURIComponent(limit) ,
+                    function (data) {
+                        const t = $("table#results tbody").empty();
+                        if (!data || data.length == 0) return;
+                        data.forEach(function (record, index) {
+                            $("<tr><td class='results'>" + record.title
+                                + "</td><td>" + record.author
+                                + "</td><td>" + record.score
+                                + "</td><td>" + record.relevance
+                                + "</td></tr>").appendTo(t)
+                        });
+                    }, "json");
+            return false;
+        }
+		$("#search").submit(search);
+        search();
+	})
+</script>
+</head>
+  
+<body>
+    <div class="w3-container w3-padding-32 w3-theme-d1">
+    </div>
+      
+    <div class="w3-row-padding w3-theme">
+        <a href="/keyword"><div id="buttonOne"></div>
+            <div class="w3-third w3-section">
+                <div class="w3-card-4">
+                    <img src="{{ url_for('static',filename='gif/keywords.gif') }}" style="width:50%" > 
+                    <div class="w3-container w3-white">
+                    <h1>Query 1: Keyword Discovery</h1>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="w3-third w3-section">
+            <a href="/calcProf"><div id="buttonOne"></div>
+                <div class="w3-card-4">
+                    <!--<img src="img_monterosso.jpg" style="width:100%"> -->
+                    <img src="{{ url_for('static',filename='gif/profiler.gif') }}" style="width:90%" > 
+                    <div class="w3-container w3-white">
+                    <h1>Query 2: Researcher Profiling</h1>
+                    </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="w3-third w3-section">
+            <a href="/findPageRank"><div id="buttonOne"></div>
+                <div class="w3-card-4">
+                    <!--<img src="img_monterosso.jpg" style="width:100%"> -->
+                    <img src="{{ url_for('static',filename='gif/pagerank.gif') }}" style="width:51%" > 
+                    <div class="w3-container w3-white">
+                    <h1>Query 3: Influencing Author</h1>
+                    </div>
+            </div>
+        </a>
+        </div>
+    </div>
+
+
+
+
+
+
+	<div class='container'>
+        <br>
+        <br>
+        <br>
+        <br>
+	<h1>Keyword Discovery</h1>
+		<form role="search" class="navbar-form" id="search">
+            <div class="form-group">
+                <input type="text" value="EBS" placeholder="Keyword" class="form-control" name="search">
+                <input type="text" value="10" placeholder="Keyword" class="form-control" name="limit">
+            </div>
+			<button class="btn btn-default" type="submit">Search</button>
+		</form>
+	<!-- <p id=results></p> -->
+	</div>
+	<div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">Search Results</div>
+            <table id="results" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Author</th>
+                    <th>Score</th>
+                    <th>Relevance</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
