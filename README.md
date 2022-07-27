@@ -9,13 +9,10 @@
 ### Architecture:-
 ![Architecture](/arch/arch1.PNG "Architecture")
 
-- Frontend:-
-    - Query 1: Keyword Discovery
-    - Query 2: Researcher Profiling
-    - Query 3: Influencing Author
-
-- Backend:-
-    - Dataset is loaded in Neo4j .
+- Operations:
+    - Keyword Discovery
+    - Researcher Profiling
+    - Influencing Author
 
 
 ### Setup Application
@@ -45,8 +42,3 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
-
-
-
-### Licensed under:-
-- BITS Pilani, Hyderabad Campus (CSG516 Adv. Database Systems Course, Semester-II, 2021-2022)
