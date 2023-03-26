@@ -24,7 +24,7 @@
 
 - Download this git repo.
 ```
-git clone https://github.com/A4ANK/DBLP-Neo4j-query-engine.git
+git clone https://github.com/ashay1001/DBLP-Neo4j-Query-Engine.git
 ```
 
 - Create a virtual env for this app in python.
